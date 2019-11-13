@@ -1,0 +1,135 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage[pdftex]{graphicx}
+\usepackage{subfigure}
+\usepackage{geometry}
+\usepackage{times}
+\usepackage{abstract}
+\usepackage{caption}
+\usepackage{float}
+\usepackage[spanish]{babel}
+\renewcommand{\abstractname}{}
+\renewcommand{\absnamepos}{empty}
+\parindent=0mm
+
+% Title Page
+\title{Reporte de actividades realizadas en el servicio social}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+En el perido del 2 de enero al 2 de julio, 
+se realizo el servicio social en el programa con número
+``108023`` y nombre
+''ANÁLISIS TEÓRICO DE PROPIEDADES QUÍMICAS, TERMODINÁMICAS 
+Y REACTIVIDAD DE COMPUESTOS QUÍMICOS`` a cargo del 
+DR. JUAN MANUEL SOLANO ALTAMIRANO.\\
+
+
+\section{Objetivo}
+\begin{itemize}
+
+
+\item Implementación del modelo unidireccional de rotor impedido en Mathematica.\\
+
+\item Cálculo de funcionales de la densidad en átomos aislados.\\
+
+\item Cálculo de funcionales de la densidad para un conjunto prueba de moléculas para la búsqueda de propiedades universales de la densidad electrónica.\\
+
+\item Cálculo de tiempo computacional con el programa AIMALL para un conjunto de prueba.\\
+ 
+\end{itemize}
+
+\section{Introducción}
+\subsection{Energías de rotación}
+Aunque las predicciones cuantitativas están disponibles utilizando paquetes comerciales de software de química cuántica, se busca una mejora continua en su precisión, y a menudo esto implica cálculos y análisis adicionales que están más allá de los disponibles en un menú estándar de opciones dentro de los códigos. Un ejemplo de esto es el tratamiento de las rotaciones internas. Se ha entendido durante más de 60 años que se introducen errores aplicando la aproximación del oscilador armónico (HO) a los modos vibratorios de baja frecuencia, sin embargo, no existe un procedimiento general de uso común que ofrezca un tratamiento mejorado de las vibraciones moleculares anarmónicas. El tratamiento de la anarmonicidad es un área de investigación activa, como lo demuestran la multitud de enfoques presentados en la literatura para abordar este problema. 
+Se puede calcular la termoquímica y cinética exactas haciendo la aproximación del rotor rígido armonico, una aproximación común en el tratamiento de la anarmonicidad vibracional debido a la rotación interna es tratar los rotores internos con un efecto hamiltoniano unidimensiona.
+\\
+\subsection{propiedades universales de la densidad electrónica}
+Como es sabido solo podemos conocer la solución analítica de la ecuación de onda de Schrödinger para el átomo de hidrógeno (sistema monoelectrónico),  pero esto no es un problema en cuanto al cálculo de las propiedades de sistemas multielectrónicos. Para esto último se utilizan métodos de aproximación, con lo que se obtienen datos aproximados de la solución de la ecuación. Entre dichos métodos de aproximación, se encuentran el método variacional de parámetros y el método de perturbaciones.\\
+En el método variacional y el método de perturbaciones se ocupa el estado inicial de algún sistema arbitrario, siendo la función de onda del estado inicial $\psi_{0}$ y la energía $E_{0}$, las cuales deben satisfacer la ecuación de Schrödinger.\\
+\begin{equation}
+ \hat{H}\psi_{0}=E_{0}\psi_{0}.
+\end{equation}
+Para poder ocupar la ecuación de Schrödinger en el estado inicial, en el método variacional, se deben realizar diversas operaciones matemáticas para poder obtener:
+ \begin{equation}
+  E_{0}=\frac{\langle \psi_{0}|\hat{H}|\psi_{0} \rangle}{|\psi_{0}|^{2}}.
+ \end{equation}
+Con el principio variacional podemos calcular un límite superior a $E_{0}$ usando cualquier función de pruega que tengamos. Cuanto más cerca este $\phi$ a $\psi_{0}$, en cierto sentido, más cercano $E_{\phi}$ será a $E_{0}$. Podemos elegir una función de prueba $\phi$ tal que dependa de algunos parámetros arbitrarios, $\alpha$, $\beta$, $\gamma$,..., llamados parámetros variacionales.\\
+\begin{equation}
+ E_{\phi}=\frac{\langle\phi|\hat{H}|\phi\rangle}{|\phi|^{2}}.
+\end{equation}
+Esté método es muy útil ya que genera datos que se aproximan mucho a los datos reportados experimentalmente. Pero tambien tiene sus desventajas, como ejemplo de esto es el hecho de que el cálculo de la energía de ionización de un átomo de Helio tiene una disrepancia de 6\% entre el dato experimental (2373 $KJ\cdot mol^{-1}$) y el dato teórico (2226 $KJ\cdot mol^{-1}$) [9]. En este contexto, sería ideal contar con algún otro método de resolución de la ecuación de Schrödinger. Como candidatos se encuentran el método de elemento finito y el de elementos de frontera. Sin embargo, éstos requieren de condiciones a la frontera. Es por esto que se plantea la búsqueda de características numéricas universales de la densidad electrónica. Se esperaría que, en caso de existir, pudieran servir como condiciones a la frontera.\\
+Para la búsqueda, utilizamos un conjunto de moléculas, de las que analizamos la densidad electrónica cerca de los núcleos.
+\subsection{Cálculo de propiedades de la densidad electrónica para moléculas y átomos aislados con el programa de AIMALL}
+El programa AIMALL es un un 
+Se utilizo el programa de AIMALL para obtener el tiempo de computo al calcular de diversas propiedades de la densidad electrónica para el conjunto de moléculas . 
+
+\section{Procedimiento}
+\subsection{Energías de rotación}
+Se genero un archivo que contenia la matriz-z del tolueno \\
+El archivo obtenido se modifica para su optimización en el programa Gaussian 09, para este caso se eligió una optimización 
+G4.\\
+Para la optimización G4 es necesario una previa optimización B3LYP por lo tanto se prepara el archivo 
+de entrada para el programa Gaussian 09:\\
+\\
+\#B3LyP/6-31g(2df,p) fopt=z-mat freq GFInput IOP(6/7=3) test\\
+\\
+Una vez terminado el calculo del archivo resultante, se crea un nuevo archivo de 
+entrada de la estructura optimizada y se prepara para el programa Gaussian 09 
+con:\\
+\\
+\#G4 QCISD=(Maxcyc=400) opt=(MaxCycles=400) scf=(MaxCycle=600) test GFInput IOP(6/7=3) popt\\
+\\
+Ya finalizado el cálculo segenera un archivo con la optimización G4, este archivo servira para el script scanPESSingleDihedral.
+
+\subsection{Propiedades universales de la densidad electrónica} 
+Como primer paso se eligió el conjunto de prueba, el cual contiene moléculas que esten conformadas por los átomos C, H, O y N. Teniendo esto como base se eligío  a las moléculas: Amoniaco, benceno, ciclopentano, dimetilamina, etanamina, etanol, etenol, etilamina, glicina, metano, metanol, metilamina y urea.\\
+Utilizando el programa Molden [2], se generó la matriz z para cada elemento del conjunto de prueba, esto con el fin de obtener de archivos de entrada para el programa Gaussian 09, los cuales son necesarios para optimizar las geometrías, para así obtener las configuraciones espaciales estables de menor energía. Para esto se eligió el método de M$\o$ller-Plesset de segundo orden (MP2), el cual tiene como base la teoría de perturbaciones de M$\o$ller-Plesset debido a que se sabe que ofrece buenos resultados para optimizar geometrías moleculares y que genera densidades electrónicas de buena calidad. Las bases utilizadas fueron cc-pvtz, para moléculas en las que no se sospechara la presencia de fuerzas débiles, y aug-pvtz cuando se sospechó que pudiesen existir fuerzas débiles.
+\\
+Una vez obtenidas las estructuras optimizadas, el análisis de la densidad electrónica se realizó con el programa DensToolKit (DTK)[3]. El cual nos generó imágenes del conjunto de prueba que se muestran en la figura 1.\\
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.8cm]{/home/sebastian/trabajos/viep/moleculas/preporte/moleculas/amoniaco.png}a)
+\includegraphics[width=1.8cm]{/home/sebastian/trabajos/viep/moleculas/preporte/moleculas/benceno.png}b)
+\includegraphics[width=1.5cm]{/home/sebastian/trabajos/viep/moleculas/preporte/moleculas/ciclopentano.png}c)
+\includegraphics[width=2cm]{/home/sebastian/trabajos/viep/moleculas/preporte/moleculas/dimetilamina.png}d)
+\includegraphics[width=2cm]{/home/sebastian/trabajos/viep/moleculas/preporte/moleculas/etanamina.png}e)
+\includegraphics[width=2.5cm]{/home/sebastian/trabajos/viep/moleculas/preporte/moleculas/etanol.png}f)
+\includegraphics[width=2.5cm]{/home/sebastian/trabajos/viep/moleculas/preporte/moleculas/etenol.png}g)
+\includegraphics[width=2.5cm]{/home/sebastian/trabajos/viep/moleculas/preporte/moleculas/etilamina.png}h)
+\includegraphics[width=2.5cm]{/home/sebastian/trabajos/viep/moleculas/preporte/moleculas/glicina.png}i)
+\includegraphics[width=1.5cm]{/home/sebastian/trabajos/viep/moleculas/preporte/moleculas/metano.png}j)
+\includegraphics[width=2cm]{/home/sebastian/trabajos/viep/moleculas/preporte/moleculas/metanol.png}k)
+\includegraphics[width=2cm]{/home/sebastian/trabajos/viep/moleculas/preporte/moleculas/metilamina.png}l)
+\includegraphics[width=2cm]{/home/sebastian/trabajos/viep/moleculas/preporte/moleculas/urea.png}m)
+\caption{Estructuras de: a) amoniaco, b) benceno,  c) ciclopentano, d) dimetilamina, e) etanamina, f) etanol, g) etenol, h) etilamina, i) glicina, j) metano, k) metanol, l) metilamina y m) urea.}
+\end{figure} 
+
+Después de obtener las estructuras optimizadas  del conjunto de prueba, obtuvimos los archivos de las funciones de  onda de tanto el conjunto de moléculas como de los átomos aislados. Esto último se realizó con el programa Gaussian09.\\
+Posteriormente, se analizaron los archivos de función de onda de los átomos aislados, con el fin de observar su distribución de la densidad electrónica y determinar si era esférica o no. Se determinó que la distribución de la densidad electrónica de los átomos aislados C, H y O no era esférica, por lo que se modificaron distribuyendo los electrones en el archivo para hacer que la densidad electrónica se hiciera esférica. Para el caso del N esto no fue necesario debido a que tenía una configuración esférica.\\
+Se determinaron los tipos de enlace presentes en el conjunto de móleculas, siendo: C-C, C=C, C-H, C-O, C=O, O-H, C-N y N-H (un signo $"-"$ representa el enlace sencillo y un signo $"="$ representa el doble enlace).\\ 
+Una vez obtenidos todos los archivos de función de onda, se utilizó el programa DTK. Posteriormente se calcularon la densidad electrónica ($\rho$(r)), la magnitud del gadiente de la densidad electrónica ($|\nabla\rho|$), el gradiente reducido de la densidad electrónica (s(r)) y el laplaciano de la densidad electrónica ($\nabla^2\rho(r)$). Las expresiones matemáticas de estas funciones son como sigue:
+\begin{equation}
+\rho(r)=C_{AB}{\phi}_{A}{\phi}_{B}.
+\end{equation}
+\begin{equation}
+ |\nabla\rho|=\sqrt{\nabla\rho\cdot\nabla\rho}.
+\end{equation}
+\begin{equation}
+s(r)=\frac{|\nabla\rho|}{[2(3\pi^2)]\rho^{4/3}}.
+\end{equation}
+\begin{equation}
+\nabla^2\rho(r)= \partial_{k}\partial_{k}\rho.
+\end{equation}
+
+\subsection{Programa AIMALL}
+
+\section{resultados}
+
+
+
+\end{document}          
