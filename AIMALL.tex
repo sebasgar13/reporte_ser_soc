@@ -1,0 +1,67 @@
+\documentclass[a4paper,10pt]{article}
+%\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{flushend}
+
+\title{Utilización de AIMALL}
+\author{Sebastián García Pineda}
+\date{}
+
+\pdfinfo{%
+  /Title    ()
+  /Author   ()
+  /Creator  ()
+  /Producer ()
+  /Subject  ()
+  /Keywords ()
+}
+
+\begin{document}
+\maketitle
+El presente documento tratará de explicar de forma brebe y resumida la utilización de AIMALL. \\
+\section{Introducción}
+AIMALL es un programa que calcula diversas propiedades de sistemas optimizados con metodos no semi-empiricos 
+partiendo de archivo wfx, wfn o g09.
+AIMALL contiene dos opciones el modo gráfico y el modo de comandos. Siendo el modo gráfico la opción que permite 
+la visualización de las estructuras y el modo consola donde se pueden hacer cálculos, mientras que el modo de comandos 
+solo permite realizar los cálculos e imprimir la información en la terminal de estos.
+
+\section{Modo gŕafico}
+En el modo gráfico es posible la visualización en 2D  siendo de gran ayuda para las primeras incursiones en este programa.
+
+
+\section{Linea de comandos}
+Para el uso de la línea de comandos se utiliza la siguiente línea de comandos: \\
+
+aimqb [opciones] [archivo .wfx/.wfn/.fchk] \\ 
+
+Donde primero se llama a la funcion con aimqb despues se eligen las opciones a utilizar y por ultimo se escribe el
+nombre del archivo. \\
+Si se quiere abrir solo el cuadro de opciones sin tener que introducir las opciones en la linea en la terminal solo se debe 
+escribir aimqb y el nombre del archivo, esto abre el cuadro de comandos pero no el modo gráfico.\\
+Ejemplo: \\
+
+aimqb [archivo .wfx/wfn/.fchk]\\   
+
+Para poder observar todas las opciones de comandos desde terminal se introduce -help, con lo que se indicaran las diferentes
+opciones así como sus valores predeterminada. \\
+Ejemplo:\\
+
+aimqb -help\\
+
+Se utiliza –nogui para que el cuadro de dialogo se observe desde la terminal sin abrir la ventana de registro de AIMQB. 
+(aimqb –nogui –help )\\
+La opcion de -help arrojara las siguientes líneas de comandos donde se observan las opciones predeterminadas 
+(lado derecho para cada opcion), si se quiere dejar las opciones predeterminadas no es necesario escribir todas las lineas 
+de comandos en la terminal solo se debera escribir las opciones que se desea cambiar el valor, o si se desea dejar todo 
+predeterminado se escribe: \\
+
+aimqb -nogui archivo  \\
+
+Se agregaría –nogui para que la información se imprima en la terminal y no en la 
+ventana de registro de AIMQB, esto es importante si se quiete tomar tiempos de calculo. \\
+
+
+\end{document}
